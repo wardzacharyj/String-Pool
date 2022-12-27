@@ -28,7 +28,7 @@
 ![alt text](Diagram.png "Title")
 
 * In this implementation pools are a fixed size of N Blocks. The size of each block is uniform. One block corresponds to one unique string with a length that is equal to or smaller than the block size. This implementation borrows concepts from the segregated fit and free list algorithms.
-* In other more involved implementation the pool could define behaviors for how blocks could expand/collapse into continuos groups to allow strings of a varying length that exceed may one block. However I opted away from this design due to the additional overhead of tracking adjacent blocks of varying sizes and the increased possibility of external fragmentation. I think
+* In other more involved implementation the pool could define behaviors for how blocks could expand/collapse into continuos groups to allow strings of a varying length that exceed may one block. However I opted away from this design due to the additional overhead of tracking adjacent blocks of varying sizes and the increased possibility of external fragmentation.
 * Instead this implementation lends itself to defining a custom wrapper object that could manages several pools of the various block sizes required by your application. For example it wouldn't make sense to define your pool of 100 blocks to be 16 bytes each if you only expect your application to handle strings that are 4-7 characters long.
 * The main data structure in the implementation is an array of blocks. This array contains the allocated strings. In order to allocate or retrieve strings this implementation relies on two auxiliary data structures. A vector of Block pointers tracks unallocated blocks, and a hashmap tracks allocated blocks and occurrences.
 
